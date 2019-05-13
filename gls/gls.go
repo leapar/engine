@@ -456,6 +456,38 @@ func (gs *GLS) GenBuffer() uint32 {
 	return buf
 }
 
+
+
+func (gs *GLS) Flush() {
+	C.glFlush()
+}
+
+func (gs *GLS) PixelStorei(program uint32, params int32) {
+	C.glPixelStorei(C.GLenum(program), C.GLint(params))
+}
+
+func (gs *GLS) GetIntegerv(program uint32, params *int32) {
+	C.glGetIntegerv(C.GLenum(program), (*C.GLint)(params))
+}
+
+
+func (gs *GLS) ReadBuffer ( src uint32) {
+	C.glReadBuffer(C.GLenum(src))
+}
+
+// TexImage2D specifies a two-dimensional texture image.
+func (gs *GLS) ReadPixels(x uint32, y int32, width int32, height int32,  format int32, itype uint32,data interface{}) {
+//GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels
+//GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels
+	C.glReadPixels(C.GLint(x),
+		C.GLint(y),
+		C.GLsizei(width),
+		C.GLsizei(height),
+		C.GLenum(format),
+		C.GLenum(itype),
+		ptr(data))
+}
+
 // GenerateMipmap generates mipmaps for the specified texture target.
 func (gs *GLS) GenerateMipmap(target uint32) {
 

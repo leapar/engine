@@ -55,6 +55,21 @@ func (cam *Camera) LookAt(target *math32.Vector3) {
 	cam.SetQuaternionQuat(&q)
 }
 
+
+// LookAt rotates the camera to look at the specified target position.
+// This method does not support objects with rotated and/or translated parent(s).
+// TODO: maybe move method to Node, or create similar in Node.
+func (cam *Camera) LookAtPos(pos *math32.Vector3,target *math32.Vector3) {
+	cam.target = *target
+	var rotMat math32.Matrix4
+	rotMat.LookAt(pos, &cam.target, &cam.up)
+
+	var q math32.Quaternion
+	q.SetFromRotationMatrix(&rotMat)
+	cam.SetQuaternionQuat(&q)
+}
+
+
 // GetCamera satisfies the ICamera interface.
 func (cam *Camera) GetCamera() *Camera {
 

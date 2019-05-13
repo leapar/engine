@@ -111,6 +111,7 @@ func (prog *Program) Build() error {
 			if prog.ShowSource {
 				msg += FormatSource(sinfo.source)
 			}
+			fmt.Println(msg)
 			return errors.New(msg)
 		}
 		sinfo.handle = shader

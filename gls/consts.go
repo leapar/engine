@@ -837,4 +837,6 @@ const (
 	TIME_ELAPSED                                  = 0x88BF
 	TIMESTAMP                                     = 0x8E28
 	INT_2_10_10_10_REV                            = 0x8D9F
+	IMPLEMENTATION_COLOR_READ_TYPE			= 0x8B9A
+	IMPLEMENTATION_COLOR_READ_FORMAT		= 0x8B9B
 )
