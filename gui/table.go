@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/g3n/engine/gui/assets/icon"
-	"github.com/g3n/engine/math32"
-	"github.com/g3n/engine/window"
+	"github.com/leapar/engine/gui/assets/icon"
+	"github.com/leapar/engine/math32"
+	"github.com/leapar/engine/window"
 )
 
 const (

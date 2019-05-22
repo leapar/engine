@@ -7,8 +7,8 @@
 package material
 
 import (
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/texture"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/texture"
 )
 
 // Side represents the material's visible side(s)

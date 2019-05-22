@@ -6,14 +6,14 @@
 package gltf
 
 import (
-	"github.com/g3n/engine/animation"
-	"github.com/g3n/engine/camera"
-	"github.com/g3n/engine/core"
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/material"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/animation"
+	"github.com/leapar/engine/camera"
+	"github.com/leapar/engine/core"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/material"
+	"github.com/leapar/engine/math32"
 	"image"
-	"github.com/g3n/engine/graphic"
+	"github.com/leapar/engine/graphic"
 )
 
 // glTF Extensions.

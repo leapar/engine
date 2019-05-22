@@ -113,7 +113,7 @@ func (b *Box3) Size(optionalTarget *Vector3) *Vector3 {
 	} else {
 		result = optionalTarget
 	}
-	return result.SubVectors(&b.Min, &b.Max)
+	return result.SubVectors( &b.Max,&b.Min)
 }
 
 // ExpandByPoint may expand this bounding box to include the specified point.

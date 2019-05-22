@@ -6,13 +6,13 @@
 package physics
 
 import (
-	"github.com/g3n/engine/core"
-	"github.com/g3n/engine/math32"
-	"github.com/g3n/engine/geometry"
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/graphic"
-	"github.com/g3n/engine/material"
-	"github.com/g3n/engine/experimental/collision"
+	"github.com/leapar/engine/core"
+	"github.com/leapar/engine/math32"
+	"github.com/leapar/engine/geometry"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/graphic"
+	"github.com/leapar/engine/material"
+	"github.com/leapar/engine/experimental/collision"
 )
 
 // This file contains helpful infrastructure for debugging physics

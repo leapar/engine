@@ -100,6 +100,11 @@ func (a ArrayF32) GetVector3(pos int, v *Vector3) {
 	v.Z = a[pos+2]
 }
 
+func (a ArrayF32) Get(pos uint32) float32 {
+
+	return a[pos]
+}
+
 // GetVector4 stores in the specified Vector4 the
 // values from the array starting at the specified pos.
 func (a ArrayF32) GetVector4(pos int, v *Vector4) {

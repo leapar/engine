@@ -5,10 +5,10 @@
 package control
 
 import (
-	"github.com/g3n/engine/camera"
-	"github.com/g3n/engine/math32"
-	"github.com/g3n/engine/util/logger"
-	"github.com/g3n/engine/window"
+	"github.com/leapar/engine/camera"
+	"github.com/leapar/engine/math32"
+	"github.com/leapar/engine/util/logger"
+	"github.com/leapar/engine/window"
 	"math"
 )
 

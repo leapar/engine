@@ -5,8 +5,8 @@
 package material
 
 import (
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/math32"
 	"unsafe"
 )
 
@@ -94,6 +94,13 @@ func (ms *Standard) EmissiveColor() math32.Color {
 func (ms *Standard) SetSpecularColor(color *math32.Color) {
 
 	ms.udata.specular = *color
+}
+
+
+// SetShininess sets the specular highlight factor. Default is 30.
+func (ms *Standard) Shininess() float32{
+
+	return ms.udata.shininess
 }
 
 // SetShininess sets the specular highlight factor. Default is 30.

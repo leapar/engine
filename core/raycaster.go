@@ -5,7 +5,7 @@
 package core
 
 import (
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/math32"
 	"sort"
 )
 

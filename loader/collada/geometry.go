@@ -6,9 +6,9 @@ package collada
 
 import (
 	"fmt"
-	"github.com/g3n/engine/geometry"
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/geometry"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/math32"
 	"reflect"
 	"strings"
 )

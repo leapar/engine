@@ -9,17 +9,17 @@ import (
 	"runtime/trace"
 	"time"
 
-	"github.com/g3n/engine/audio/al"
-	"github.com/g3n/engine/audio/vorbis"
-	"github.com/g3n/engine/camera"
-	"github.com/g3n/engine/camera/control"
-	"github.com/g3n/engine/core"
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/gui"
-	"github.com/g3n/engine/math32"
-	"github.com/g3n/engine/renderer"
-	"github.com/g3n/engine/util/logger"
-	"github.com/g3n/engine/window"
+	"github.com/leapar/engine/audio/al"
+	"github.com/leapar/engine/audio/vorbis"
+	"github.com/leapar/engine/camera"
+	"github.com/leapar/engine/camera/control"
+	"github.com/leapar/engine/core"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/gui"
+	"github.com/leapar/engine/math32"
+	"github.com/leapar/engine/renderer"
+	"github.com/leapar/engine/util/logger"
+	"github.com/leapar/engine/window"
 )
 
 // Application is a standard application object which can be used as a base for G3N applications.
@@ -51,6 +51,9 @@ type Application struct {
 	noglErrors        *bool                 // No OpenGL check errors options
 	cpuProfile        *string               // File to write cpu profile to
 	execTrace         *string               // File to write execution trace data to
+
+	mainRunFunc		  chan func()
+	mainRunFuncOver	  chan bool
 }
 
 // Options defines initial options passed to the application creation function
@@ -227,6 +230,9 @@ func Create(ops Options) (*Application, error) {
 	})
 	app.OnWindowResize()
 
+	app.mainRunFunc = make(chan  func(),1)
+	app.mainRunFuncOver = make(chan  bool,1)
+
 	return app, nil
 }
 
@@ -236,6 +242,16 @@ func Get() *Application {
 
 	return appInstance
 }
+
+func (app *Application) GetMainToRunChan() (chan  func()){
+	return app.mainRunFunc
+}
+
+func (app *Application) GetMainToRunOverChan() (chan  bool){
+	return app.mainRunFuncOver
+}
+
+
 
 // Log returns the application logger
 func (app *Application) Log() *logger.Logger {
@@ -446,6 +462,14 @@ func (app *Application) Run() error {
 			} else {
 				break
 			}
+		}
+
+		select {
+		case torun := <- app.mainRunFunc:
+			fmt.Println("run on main thread")
+			torun()
+
+		default:
 		}
 
 		// Starts measuring this frame

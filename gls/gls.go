@@ -475,6 +475,36 @@ func (gs *GLS) ReadBuffer ( src uint32) {
 	C.glReadBuffer(C.GLenum(src))
 }
 
+//void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
+func (gs *GLS) BindRenderbuffer ( program uint32,params uint32) {
+	C.glBindRenderbuffer(C.GLenum(program), C.GLuint(params))
+}
+
+func (gs *GLS) GenRenderbuffers ( src int32,params *uint32) {
+	C.glGenRenderbuffers(C.GLsizei(src), (*C.GLuint)(params))
+}
+
+//void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
+
+func (gs *GLS) RenderbufferStorage ( target int32,internalformat int32, width int32, height int32) {
+	C.glRenderbufferStorage(C.GLenum(target), C.GLenum(internalformat),C.GLsizei(width), C.GLsizei(height))
+}
+
+//void glGenFramebuffers (GLsizei n, GLuint *framebuffers)
+func (gs *GLS) GenFramebuffers ( src int32,params *uint32) {
+	C.glGenFramebuffers(C.GLsizei(src), (*C.GLuint)(params))
+}
+
+//void glBindFramebuffer (GLenum target, GLuint framebuffer)
+func (gs *GLS) BindFramebuffer ( target uint32,framebuffer uint32) {
+	C.glBindFramebuffer(C.GLenum(target), C.GLuint(framebuffer))
+}
+
+//glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
+func (gs *GLS) FramebufferRenderbuffer ( target int32,attachment int32, width int32, renderbuffer uint32) {
+	C.glFramebufferRenderbuffer(C.GLenum(target), C.GLenum(attachment),C.GLenum(width), C.GLuint(renderbuffer))
+}
+
 // TexImage2D specifies a two-dimensional texture image.
 func (gs *GLS) ReadPixels(x uint32, y int32, width int32, height int32,  format int32, itype uint32,data interface{}) {
 //GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels

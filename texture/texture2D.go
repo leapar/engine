@@ -13,8 +13,10 @@ import (
 	_ "image/png"
 	"os"
 	"unsafe"
-
-	"github.com/g3n/engine/gls"
+	"github.com/leapar/engine/util/network"
+	"github.com/leapar/engine/gls"
+	"image/jpeg"
+	"gopkg.in/bufio.v1"
 )
 
 // Texture2D represents a texture
@@ -86,6 +88,21 @@ func NewTexture2DFromImage(imgfile string) (*Texture2D, error) {
 	t.SetFromRGBA(rgba)
 	return t, nil
 }
+
+
+func NewTexture2DFromUrl(url string) (*Texture2D, error) {
+
+	// Decodes image file into RGBA8
+	rgba, err := DecodeUrlImage(url)
+	if err != nil {
+		return nil, err
+	}
+
+	t := newTexture2D()
+	t.SetFromRGBA(rgba)
+	return t, nil
+}
+
 
 // NewTexture2DFromRGBA creates a new texture from a pointer to an RGBA image object.
 func NewTexture2DFromRGBA(rgba *image.RGBA) *Texture2D {
@@ -303,6 +320,42 @@ func DecodeImage(imgfile string) (*image.RGBA, error) {
 	draw.Draw(rgba, rgba.Bounds(), img, image.Point{0, 0}, draw.Src)
 	return rgba, nil
 }
+
+func  LoadByteImage(data []byte) (image.Image, error) {
+	reader := bufio.NewBuffer(data)
+
+	img, _, err := image.Decode(reader)
+	if err != nil {
+		img,  err = jpeg.Decode(reader)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return img, nil
+}
+
+// DecodeImage reads and decodes the specified image file into RGBA8.
+// The supported image files are PNG, JPEG and GIF.
+func DecodeUrlImage(url string) (*image.RGBA, error) {
+	data,err := network.MustGet(url)
+	if err != nil {
+		return nil, fmt.Errorf("load failed: %s",url)
+	}
+
+	img, err := LoadByteImage(data)
+	if err != nil {
+		return nil, fmt.Errorf("load failed: %s",url)
+	}
+
+	// Converts image to RGBA format
+	rgba := image.NewRGBA(img.Bounds())
+	if rgba.Stride != rgba.Rect.Size().X*4 {
+		return nil, fmt.Errorf("unsupported stride")
+	}
+	draw.Draw(rgba, rgba.Bounds(), img, image.Point{0, 0}, draw.Src)
+	return rgba, nil
+}
+
 
 // RenderSetup is called by the material render setup
 func (t *Texture2D) RenderSetup(gs *gls.GLS, slotIdx, uniIdx int) { // Could have as input - TEXTURE0 (slot) and uni location

@@ -5,8 +5,8 @@
 package geometry
 
 import (
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/math32"
 	"strconv"
 )
 
@@ -346,6 +346,16 @@ func (g *Geometry) Indexed() bool {
 	return g.indices.Size() > 0
 }
 
+
+func (g *Geometry) SetBoundingBox(box math32.Box3) {
+	// Reset bounding box
+	g.boundingBox.Min.Set(box.Min.X,box.Min.Y,box.Min.Z)
+	g.boundingBox.Max.Set(box.Max.X,box.Max.Y,box.Max.Z)
+
+	g.boundingBoxValid = true
+
+}
+
 // BoundingBox computes the bounding box of the geometry if necessary
 // and returns is value.
 func (g *Geometry) BoundingBox() math32.Box3 {
@@ -356,8 +366,8 @@ func (g *Geometry) BoundingBox() math32.Box3 {
 	}
 
 	// Reset bounding box
-	g.boundingBox.Min.Set(0, 0, 0)
-	g.boundingBox.Max.Set(0, 0, 0)
+	g.boundingBox.Min.Set(math32.Infinity, math32.Infinity, math32.Infinity)
+	g.boundingBox.Max.Set(-math32.Infinity, -math32.Infinity, -math32.Infinity)
 
 	// Expand bounding box by each vertex
 	g.ReadVertices(func(vertex math32.Vector3) bool {

@@ -7,7 +7,7 @@ package text
 import (
 	"bufio"
 	"fmt"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/math32"
 	"image"
 	"image/png"
 	"os"

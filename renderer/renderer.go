@@ -5,13 +5,13 @@
 package renderer
 
 import (
-	"github.com/g3n/engine/camera"
-	"github.com/g3n/engine/core"
-	"github.com/g3n/engine/gls"
-	"github.com/g3n/engine/graphic"
-	"github.com/g3n/engine/gui"
-	"github.com/g3n/engine/light"
-	"github.com/g3n/engine/math32"
+	"github.com/leapar/engine/camera"
+	"github.com/leapar/engine/core"
+	"github.com/leapar/engine/gls"
+	"github.com/leapar/engine/graphic"
+	"github.com/leapar/engine/gui"
+	"github.com/leapar/engine/light"
+	"github.com/leapar/engine/math32"
 	"sort"
 )
 

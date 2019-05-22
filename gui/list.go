@@ -5,7 +5,7 @@
 package gui
 
 import (
-	"github.com/g3n/engine/window"
+	"github.com/leapar/engine/window"
 )
 
 // List represents a list GUI element
